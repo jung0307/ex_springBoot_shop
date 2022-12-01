@@ -107,4 +107,13 @@ public class ItemController {
         model.addAttribute("maxPage" , 5); // 상품 관리 메뉴 하단에 보여줄 페이지 번호의 최대 개수입니다. 5로 설정했으므로 최대 5개의 이동할 페이지 번호만 보여줍니다.
         return "item/itemMng";
     }
+
+    @GetMapping(value = "/item/{itemId}")
+    public String itemDtl(Model model , @PathVariable("itemId") Long itemId ) {
+
+        ItemFormDto itemFormDto = itemService.getItemDtl(itemId);
+        model.addAttribute("item" , itemFormDto);
+
+        return "item/itemDtl";
+    }
 }
